@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,61 +16,42 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int seconds = 0;
-    private int hundreth = 0;
     private boolean isRunning = false;
-    private boolean isSaved;
     private boolean isClickedStart = false;
     private boolean wasRunning;
-
-    //private TextView timeView = (TextView) findViewById(R.id.time_view);
-
-//    int hours;
-//    int minutes;
-//    int secs;
-//    int decas;
-
-
-    String timeString;
-
-//    private int hundreths;
-//    private int deca;
-//    int sec;
-//    private int
-
 
     private ArrayList<String> savedStoppedTimeList = new ArrayList<String>();
     private ArrayList<TextView> savedTimeArrayList = new ArrayList<TextView>();
 
-    private Calendar cal = Calendar.getInstance();
-    private int second = cal.get(Calendar.SECOND);
 
     private int clickCounter1 = 0;
     private int clickCounter2 = 0;
     private int clickCounter3 = 0;
     private int clickCounter4 = 0;
 
+
     private String tapInstructions = "Tap2Save";
-
-
+    private String timeString;
     private String savedTimeToSend1;
     private String savedTimeToSend2;
     private String savedTimeToSend3;
     private String savedTimeToSend4;
 
+   // private TextView timeText = (TextView) findViewById(R.id.time_view);
 
-    private long millisStart;
 
-    private int millis = 0;
-    private int hundreths;
-    private int decas;
+    private long startTime;
+    private long timeInMilliSeconds;
+    private int hundredths;
     private int secs;
     private int mins;
+
+    private TextView timeView;
 
 
 
@@ -78,34 +60,50 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        if(savedInstanceState != null){
-//            seconds = savedInstanceState.getInt("seconds");
-//            secs = savedInstanceState.getInt("secs");
-//            minutes = savedInstanceState.getInt("minutes");
-//            hours = savedInstanceState.getInt("hours");
-//            isRunning = savedInstanceState.getBoolean("isRunning");
-//            timeString = savedInstanceState.getString("timeString");
-//            isClickedStart = savedInstanceState.getBoolean("isClickedStart");
-//            wasRunning = savedInstanceState.getBoolean("wasRunning");
-//        }
+        timeView = (TextView) findViewById(R.id.time_view);
+        timeView.setVisibility(View.VISIBLE);
+
+
+        if(savedInstanceState != null){
+            startTime = savedInstanceState.getLong("startTime");
+            timeInMilliSeconds = savedInstanceState.getLong("timeInMilliSeconds", timeInMilliSeconds);
+            secs = savedInstanceState.getInt("secs");
+            hundredths = savedInstanceState.getInt("hundredths");
+            mins = savedInstanceState.getInt("mins");
+            isRunning = savedInstanceState.getBoolean("isRunning");
+            timeString = savedInstanceState.getString("timeString");
+            isClickedStart = savedInstanceState.getBoolean("isClickedStart");
+            wasRunning = savedInstanceState.getBoolean("wasRunning");
+        }
+
+
+
         if(isRunning ){
             runTimer();
+            timeView.setText(timeString);
+            startTime = savedInstanceState.getLong("startTime");
         }
-        //flashTimer();
+
+        if(wasRunning){
+            timeView.setText(timeString);
+            startTime = savedInstanceState.getLong("startTime");
+        }
+
     }
 
-//    @Override
-//    protected void onSaveInstanceState(Bundle savedInstanceState) {
-//        savedInstanceState.putInt("seconds", seconds);
-//        savedInstanceState.putInt("secs", secs);
-//        savedInstanceState.putInt("minutes", minutes);
-//        savedInstanceState.putInt("hours", hours);
-//        savedInstanceState.putBoolean("isRunning", isRunning);
-//        savedInstanceState.putString("timeString", timeString);
-//        savedInstanceState.putBoolean("isClickedStart", isClickedStart);
-//        savedInstanceState.putBoolean("wasRunning", wasRunning);
-//
-//    }
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putLong("startTime", startTime);
+        savedInstanceState.putLong("timeInMilliSeconds", timeInMilliSeconds);
+        savedInstanceState.putInt("secs", secs);
+        savedInstanceState.putInt("hundredths", hundredths);
+        savedInstanceState.putInt("mins", mins);
+        savedInstanceState.putBoolean("isRunning", isRunning);
+        savedInstanceState.putString("timeString", timeString);
+        savedInstanceState.putBoolean("isClickedStart", isClickedStart);
+        savedInstanceState.putBoolean("wasRunning", wasRunning);
+
+    }
 
 
 //    @Override
@@ -123,31 +121,40 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickStart(View view){
-        //millisStart = System.currentTimeMillis();
+        //startTime = SystemClock.elapsedRealtime();
         playSoundEffects();
         isRunning = true;
+       // runTimer();
         if(isClickedStart == false){
+            startTime = SystemClock.elapsedRealtime();
+            runTimer();
+        }
+        else{
+            //startTime = timeInMilliSeconds;
             runTimer();
         }
         isClickedStart = true;
+
     }
 
+
     public void onClickStop(View view){
+
         playSoundEffects();
-
         isRunning = false;
+        isClickedStart = true;
 
-        isClickedStart = false;
+        wasRunning = true;
 
-        savedStoppedTimeList.add(timeString);
+        //startTime = timeInMilliSeconds
+        //savedStoppedTimeList.add(timeString);
 
     }
 
     public void onClickReset(View view){
         playSoundEffects();
         isRunning = false;
-        seconds = 0;
-
+        wasRunning = false;
         clearTime();
         isClickedStart = false;
 
@@ -167,54 +174,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     private void runTimer() {
-        final TextView timeView = (TextView) findViewById(R.id.time_view);
-        timeView.setVisibility(View.VISIBLE);
 
         if (isRunning) {
-            millis++;
-
 
             Handler handler2 = new Handler();
             Runnable runnable2 = new Runnable() {
                 @Override
                 public void run() {
 
-                    //System.out.println("Timer: " + seconds);
-
-                   // long millis = System.currentTimeMillis() - millisStart;
-
-
-                    secs = millis % 1000;
-                    hundreth = millis/1000;
-                    decas = (millis / 100)%10;
-                    mins = millis / (1000*60);
-
-
-
-                    //long hundreths = nano/ 10000000;
-
-//                    long start = System.nanoTime();
-//                    long end = System.nanoTime();
-//
-//                    long elapsedTime = end - start;
-//                    long elapsedTime = end - start;
-//                    double seconds = (double)elapsedTime / 1000000000.0;
-//
-//                    hours = seconds/6000;
-//                    minutes = seconds/100;
-//                    secs = seconds%100;
-
-                   // timeString = String.valueOf(millis);
-
-
-
-                    timeString = String.format("%02d:%02d:%02d", mins, secs, hundreth);
-                    timeView.setText(timeString);
-
                     runTimer();
+                    timeInMilliSeconds = SystemClock.elapsedRealtime() - startTime;
+
+                    hundredths = (int) (timeInMilliSeconds/10)%100;
+                    secs = (int) (timeInMilliSeconds)/1000;
+                    mins = secs / 60;
+
+
+                    timeString = String.format("%02d:%02d:%02d", mins, secs, hundredths);
+                    timeView.setText(timeString);
 
                 }
 
@@ -224,22 +202,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+
     public void clearTime(){
+        hundredths = 0;
         secs = 0;
-        hundreth = 0;
-        decas = 0;
         mins = 0;
 
         TextView timeView = (TextView) findViewById(R.id.time_view);
 
-        timeString = String.format("%02d:%02d:%02d", mins, secs, decas);
+        timeString = String.format("%02d:%02d:%02d", mins, secs, hundredths);
         timeView.setText(timeString);
 
     }
 
 
-
-//testing comment
 
 
     public void onClickSave1(View view){
