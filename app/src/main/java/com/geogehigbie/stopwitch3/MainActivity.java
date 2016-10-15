@@ -573,6 +573,8 @@ public class MainActivity extends AppCompatActivity {
         provideAnimationListener(imageView, animation1, textView);
     }
 
+    //
+
 
 
     public void flyFromLowerLeftSmall(final ImageView imageView, final TextView textView){
