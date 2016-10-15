@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private String savedTimeToSend3;
     private String savedTimeToSend4;
 
-   // private TextView timeText = (TextView) findViewById(R.id.time_view);
-
-
     private long startTime;
     private long timeInMilliSeconds;
     private int hundredths;
@@ -52,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     private int mins;
 
     private TextView timeView;
+
+    private Handler handler1 = new Handler();
+    private Runnable runnable1;
+
 
 
 
@@ -102,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putString("timeString", timeString);
         savedInstanceState.putBoolean("isClickedStart", isClickedStart);
         savedInstanceState.putBoolean("wasRunning", wasRunning);
-
     }
 
 
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickStart(View view){
         //startTime = SystemClock.elapsedRealtime();
         playSoundEffects();
+        handler1.removeCallbacks(runnable1);
         isRunning = true;
        // runTimer();
         if(isClickedStart == false){
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             runTimer();
         }
         else{
-            //startTime = timeInMilliSeconds;
+            startTime = SystemClock.elapsedRealtime() - timeInMilliSeconds;
             runTimer();
         }
         isClickedStart = true;
@@ -139,19 +140,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickStop(View view){
-
         playSoundEffects();
         isRunning = false;
         isClickedStart = true;
-
         wasRunning = true;
-
-        //startTime = timeInMilliSeconds
-        //savedStoppedTimeList.add(timeString);
 
     }
 
     public void onClickReset(View view){
+        handler1.removeCallbacks(runnable1);
         playSoundEffects();
         isRunning = false;
         wasRunning = false;
@@ -159,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
         isClickedStart = false;
 
     }
+
+
 
     public void playSoundEffects(){
 
@@ -178,11 +177,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (isRunning) {
 
-            Handler handler2 = new Handler();
-            Runnable runnable2 = new Runnable() {
+            handler1 = new Handler();
+            runnable1 = new Runnable() {
                 @Override
                 public void run() {
 
+                    Log.d("HANDLER", "run: HANDLER IS RUNNING ");
                     runTimer();
                     timeInMilliSeconds = SystemClock.elapsedRealtime() - startTime;
 
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             };
-            handler2.postDelayed(runnable2, 1);
+            handler1.postDelayed(runnable1, 1);
         }
     }
 
@@ -360,14 +360,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void soundAndAnimation(int clickCounter, TextView savedTime, ImageView imageView){
-        final String intructionsFill = "Tap2Save";
 
         if(clickCounter %2 == 0){
             playWitchLaugh();
 
             randomAnimation(imageView, savedTime);
 
-            savedTime.setText(intructionsFill);
+            savedTime.setText(tapInstructions);
         }
         else{
             playSoundEffects();
