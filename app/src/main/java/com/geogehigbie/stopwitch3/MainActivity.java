@@ -174,8 +174,9 @@ public class MainActivity extends AppCompatActivity {
                     timeInMilliSeconds = SystemClock.elapsedRealtime() - startTime;
 
                     hundredths = (int) (timeInMilliSeconds/10)%100;
-                    secs = (int) (timeInMilliSeconds)/1000;
-                    mins = secs / 60;
+                    secs = (int) ((timeInMilliSeconds)/1000)%60;
+                    mins = (int) (timeInMilliSeconds)/60000;
+
 
 
                     timeString = String.format("%02d:%02d:%02d", mins, secs, hundredths);
@@ -322,12 +323,12 @@ public class MainActivity extends AppCompatActivity {
         String savedTime = "00.00.00";
 
         if(clickCounter1 == 2){savedTime = savedTimeToSend1; clickCounter1 = 0;}
-        if(clickCounter2 == 2){savedTime = savedTimeToSend2; clickCounter1 = 0;}
-        if(clickCounter3 == 2){savedTime = savedTimeToSend3; clickCounter1 = 0;}
-        if(clickCounter4 == 2){savedTime = savedTimeToSend4; clickCounter1 = 0;}
+        if(clickCounter2 == 2){savedTime = savedTimeToSend2; clickCounter2 = 0;}
+        if(clickCounter3 == 2){savedTime = savedTimeToSend3; clickCounter3 = 0;}
+        if(clickCounter4 == 2){savedTime = savedTimeToSend4; clickCounter4 = 0;}
 
 
-        String emailMessage = "The Stop Witch says your time was " + savedTime;
+        String emailMessage = "The Stop Witch says that your time was " + savedTime;
         String emailSubject = "Your Stop Witch time";
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);

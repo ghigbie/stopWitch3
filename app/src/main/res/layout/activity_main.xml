@@ -44,7 +44,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/time_text"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textSize="94sp" />
+        android:textSize="80sp" />
 
     <LinearLayout
         android:id="@+id/linear_upper"
