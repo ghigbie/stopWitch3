@@ -105,18 +105,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    protected void onPause() {
-//        wasRunning = isRunning;
-//    }
-
-//   @Override
-//   protected void onResume(){
-//       if(wasRunning){
-//           isRunning = true;
-//       }
-//   }
-
 
 
     public void onClickStart(View view){
@@ -573,7 +561,6 @@ public class MainActivity extends AppCompatActivity {
         provideAnimationListener(imageView, animation1, textView);
     }
 
-    //
 
 
 
