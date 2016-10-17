@@ -108,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickStart(View view){
-        //startTime = SystemClock.elapsedRealtime();
+
         playSoundEffects();
         handler1.removeCallbacks(runnable1);
         isRunning = true;
-       // runTimer();
+
         if(isClickedStart == false){
             startTime = SystemClock.elapsedRealtime();
             runTimer();
@@ -302,12 +302,11 @@ public class MainActivity extends AppCompatActivity {
         if(clickCounter4 % 2 == 0) {
             multipleAnimation(witchIcon4, clickCounter4, savedTime4);
             savedTimeToSend4 = savedTime4.getText().toString();
-            //sendEmail(savedTimeToSend4);
+
 
         }
         else{
             mainTimeAnnimation();
-            //animatSmallTime(savedTime4, witchIcon4);
 
             TextView timeView = (TextView) findViewById(R.id.time_view); //This is the source of the time.
             String lastSavedTime = timeView.getText().toString();
@@ -328,7 +327,8 @@ public class MainActivity extends AppCompatActivity {
         if(clickCounter4 == 2){savedTime = savedTimeToSend4; clickCounter4 = 0;}
 
 
-        String emailMessage = "The Stop Witch says that your time was " + savedTime;
+        String emailMessage = "The Stop Witch says that your time was " + savedTime + ". " +
+                "Download the Stop Witch app at: https://play.google.com/store/apps/details?id=com.geogehigbie.stopwitch3";
         String emailSubject = "Your Stop Witch time";
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -446,7 +446,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setVisibility(View.INVISIBLE);
                 textView.setVisibility(View.INVISIBLE);
 
-                sendEmail();
+               // sendEmail();
 
             }
 
@@ -473,6 +473,7 @@ public class MainActivity extends AppCompatActivity {
                         textView.startAnimation(reverseAlpha);
                         imageView.setVisibility(View.VISIBLE);
                         textView.setVisibility(View.VISIBLE);
+                        sendEmail();
 
                     }
 
