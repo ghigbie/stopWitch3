@@ -758,7 +758,275 @@ public class MainActivity extends AppCompatActivity {
 
         provideAnimationListener(imageView, animation1, textView);
     }
+    //combinations of animations are below
 
+    //fly from upper right Big and fly Left Big
+    public void combination1(final ImageView imageView, final TextView textView){
+
+        ImageView bigWitchBackward1 = (ImageView) findViewById(R.id.witchIconLargeBackWard1);
+        bigWitchBackward1.clearAnimation();
+
+        bigWitchBackward1.setMaxHeight(3500);
+        bigWitchBackward1.setMaxWidth(3500);
+        bigWitchBackward1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation1 = new TranslateAnimation(1000.0f, -1100.0f, -900.0f, 500.0f);
+        animation1.setDuration(2000);
+        animation1.setRepeatCount(0);
+        animation1.setRepeatMode(0);
+        animation1.setFillAfter(true);
+        bigWitchBackward1.startAnimation(animation1);
+
+        ImageView bigWitch3 = (ImageView) findViewById(R.id.witchIconLarge1);
+        bigWitch3.clearAnimation();
+
+        bigWitch3.setMaxHeight(3000);
+        bigWitch3.setMaxWidth(3000);
+        bigWitch3.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation3 = new TranslateAnimation(-1000.0f, 2100.0f, -600.0f, 900.0f);
+        animation3.setDuration(2000);
+        animation3.setRepeatCount(0);
+        animation3.setRepeatMode(0);
+        animation3.setFillAfter(true);
+        bigWitch3.startAnimation(animation3);
+
+        provideAnimationListener(imageView, animation1, textView);
+    }
+
+    //fly from LowerLeft Big & Fly from Lower right Big
+    public void combination2(final ImageView imageView, final TextView textView) {
+        ImageView bigWitch3 = (ImageView) findViewById(R.id.witchIconLarge1);
+        bigWitch3.clearAnimation();
+
+        bigWitch3.setMaxHeight(3000);
+        bigWitch3.setMaxWidth(3000);
+        bigWitch3.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation3 = new TranslateAnimation(-1000.0f, 2100.0f, -600.0f, 900.0f);
+        animation3.setDuration(2000);
+        animation3.setRepeatCount(0);
+        animation3.setRepeatMode(0);
+        animation3.setFillAfter(true);
+        bigWitch3.startAnimation(animation3);
+
+        ImageView bigWitchBackward1 = (ImageView) findViewById(R.id.witchIconLargeBackWard1);
+        bigWitchBackward1.clearAnimation();
+
+        bigWitchBackward1.setMaxHeight(3500);
+        bigWitchBackward1.setMaxWidth(3500);
+        bigWitchBackward1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation1 = new TranslateAnimation(1000.0f, -2100.0f, 600.0f, -900.0f);
+        animation1.setDuration(2000);
+        animation1.setRepeatCount(0);
+        animation1.setRepeatMode(0);
+        animation1.setFillAfter(true);
+        bigWitchBackward1.startAnimation(animation1);
+
+        provideAnimationListener(imageView, animation3, textView);
+
+    }
+
+    //fly from upper right small & fly from upper left small
+    public void combination3(final ImageView imageView, final TextView textView) {
+
+        ImageView bigWitchBackward1 = (ImageView) findViewById(R.id.witchIconLargeBackWard1);
+        bigWitchBackward1.clearAnimation();
+
+        bigWitchBackward1.setMaxHeight(500);
+        bigWitchBackward1.setMaxWidth(500);
+        bigWitchBackward1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation1 = new TranslateAnimation(1000.0f, -1100.0f, -900.0f, 500.0f);
+        animation1.setDuration(2000);
+        animation1.setRepeatCount(0);
+        animation1.setRepeatMode(0);
+        animation1.setFillAfter(true);
+        bigWitchBackward1.startAnimation(animation1);
+
+        ImageView bigWitch3 = (ImageView) findViewById(R.id.witchIconLarge1);
+        bigWitch3.clearAnimation();
+
+        bigWitch3.setMaxHeight(500);
+        bigWitch3.setMaxWidth(500);
+        bigWitch3.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation3 = new TranslateAnimation(-1000.0f, 2100.0f, -600.0f, 900.0f);
+        animation3.setDuration(2000);
+        animation3.setRepeatCount(0);
+        animation3.setRepeatMode(0);
+        animation3.setFillAfter(true);
+        bigWitch3.startAnimation(animation3);
+
+        provideAnimationListener(imageView, animation1, textView);
+
+    }
+
+    //fly from lower right small & fly from lower left small
+    public void combination4(final ImageView imageView, final TextView textView) {
+
+        ImageView bigWitch2 = (ImageView) findViewById(R.id.witchIconLarge1);
+        bigWitch2.clearAnimation();
+        bigWitch2.setMaxHeight(600);
+        bigWitch2.setMaxWidth(600);
+        bigWitch2.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation2 = new TranslateAnimation(-1000.0f, 2100.0f, 200.0f, -700.0f);
+        animation2.setDuration(2000);
+        animation2.setRepeatCount(0);
+        animation2.setRepeatMode(0);
+        animation2.setFillAfter(true);
+        bigWitch2.startAnimation(animation2);
+
+        ImageView bigWitchBackward1 = (ImageView) findViewById(R.id.witchIconLargeBackWard1);
+        bigWitchBackward1.clearAnimation();
+
+        bigWitchBackward1.setMaxHeight(600);
+        bigWitchBackward1.setMaxWidth(600);
+        bigWitchBackward1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation1 = new TranslateAnimation(1000.0f, -2100.0f, 600.0f, -900.0f);
+        animation1.setDuration(2000);
+        animation1.setRepeatCount(0);
+        animation1.setRepeatMode(0);
+        animation1.setFillAfter(true);
+        bigWitchBackward1.startAnimation(animation1);
+
+        provideAnimationListener(imageView, animation2, textView);
+
+    }
+
+    // upperRightBig && lowerLeftSmall
+    public void combination5(final ImageView imageView, final TextView textView) {
+
+        ImageView bigWitchBackward1 = (ImageView) findViewById(R.id.witchIconLargeBackWard1);
+        bigWitchBackward1.clearAnimation();
+
+        bigWitchBackward1.setMaxHeight(3500);
+        bigWitchBackward1.setMaxWidth(3500);
+        bigWitchBackward1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation1 = new TranslateAnimation(1000.0f, -1100.0f, -900.0f, 500.0f);
+        animation1.setDuration(2000);
+        animation1.setRepeatCount(0);
+        animation1.setRepeatMode(0);
+        animation1.setFillAfter(true);
+        bigWitchBackward1.startAnimation(animation1);
+
+        ImageView bigWitch2 = (ImageView) findViewById(R.id.witchIconLarge1);
+        bigWitch2.clearAnimation();
+        bigWitch2.setMaxHeight(600);
+        bigWitch2.setMaxWidth(600);
+        bigWitch2.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation2 = new TranslateAnimation(-1000.0f, 2100.0f, 200.0f, -700.0f);
+        animation2.setDuration(2000);
+        animation2.setRepeatCount(0);
+        animation2.setRepeatMode(0);
+        animation2.setFillAfter(true);
+        bigWitch2.startAnimation(animation2);
+
+        provideAnimationListener(imageView, animation1, textView);
+
+    }
+
+    //lowerLeftBig & LowerRightSmall
+    public void combination6(final ImageView imageView, final TextView textView){
+        ImageView bigWitch2 = (ImageView) findViewById(R.id.witchIconLarge1);
+        bigWitch2.clearAnimation();
+        bigWitch2.setMaxHeight(2600);
+        bigWitch2.setMaxWidth(2600);
+        bigWitch2.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation2 = new TranslateAnimation(-1000.0f, 2100.0f, 200.0f, -700.0f);
+        animation2.setDuration(2000);
+        animation2.setRepeatCount(0);
+        animation2.setRepeatMode(0);
+        animation2.setFillAfter(true);
+        bigWitch2.startAnimation(animation2);
+
+        ImageView bigWitchBackward1 = (ImageView) findViewById(R.id.witchIconLargeBackWard1);
+        bigWitchBackward1.clearAnimation();
+
+        bigWitchBackward1.setMaxHeight(600);
+        bigWitchBackward1.setMaxWidth(600);
+        bigWitchBackward1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation1 = new TranslateAnimation(1000.0f, -2100.0f, 600.0f, -900.0f);
+        animation1.setDuration(2000);
+        animation1.setRepeatCount(0);
+        animation1.setRepeatMode(0);
+        animation1.setFillAfter(true);
+        bigWitchBackward1.startAnimation(animation1);
+
+        provideAnimationListener(imageView, animation2, textView);
+    }
+
+    public void combination7(final ImageView imageView, final TextView textView) {
+
+        ImageView bigWitch2 = (ImageView) findViewById(R.id.witchIconLarge1);
+        bigWitch2.clearAnimation();
+        bigWitch2.setMaxHeight(2600);
+        bigWitch2.setMaxWidth(2600);
+        bigWitch2.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation2 = new TranslateAnimation(-1000.0f, 2100.0f, 200.0f, -700.0f);
+        animation2.setDuration(2000);
+        animation2.setRepeatCount(0);
+        animation2.setRepeatMode(0);
+        animation2.setFillAfter(true);
+        bigWitch2.startAnimation(animation2);
+
+        ImageView bigWitchBackward1 = (ImageView) findViewById(R.id.witchIconLargeBackWard1);
+        bigWitchBackward1.clearAnimation();
+
+        bigWitchBackward1.setMaxHeight(500);
+        bigWitchBackward1.setMaxWidth(500);
+        bigWitchBackward1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation1 = new TranslateAnimation(1000.0f, -2100.0f, 150.0f, 150.0f);
+        animation1.setDuration(2000);
+        animation1.setRepeatCount(0);
+        animation1.setRepeatMode(0);
+        animation1.setFillAfter(true);
+        bigWitchBackward1.startAnimation(animation1);
+
+        provideAnimationListener(imageView, animation2, textView);
+    }
+
+    public void combination8(final ImageView imageView, final TextView textView) {
+
+        ImageView bigWitchBackward1 = (ImageView) findViewById(R.id.witchIconLargeBackWard1);
+        bigWitchBackward1.clearAnimation();
+
+        bigWitchBackward1.setMaxHeight(3500);
+        bigWitchBackward1.setMaxWidth(3500);
+        bigWitchBackward1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation1 = new TranslateAnimation(1000.0f, -2100.0f, 600.0f, -900.0f);
+        animation1.setDuration(2000);
+        animation1.setRepeatCount(0);
+        animation1.setRepeatMode(0);
+        animation1.setFillAfter(true);
+        bigWitchBackward1.startAnimation(animation1);
+
+        ImageView bigWitch1 = (ImageView) findViewById(R.id.witchIconLarge1);
+        bigWitch1.clearAnimation();
+
+        bigWitch1.setMaxHeight(750);
+        bigWitch1.setMaxWidth(750);
+        bigWitch1.setVisibility(View.VISIBLE);
+
+        TranslateAnimation animation2 = new TranslateAnimation(-1000.0f, 2100.0f, 100.0f, 100.0f);
+        animation2.setDuration(1800);
+        animation2.setRepeatCount(0);
+        animation2.setRepeatMode(0);
+        animation2.setFillAfter(true);
+        bigWitch1.startAnimation(animation2);
+
+        provideAnimationListener(imageView, animation1, textView);
+    }
 
 
 
@@ -823,43 +1091,51 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 13:
-                flyFromUpperRightBig(imageView, textView);
-                flyFromUpperLeftBig(imageView, textView);
+                combination1(imageView, textView);
+                //flyFromUpperRightBig(imageView, textView);
+                //flyFromUpperLeftBig(imageView, textView);
                 break;
 
             case 14:
-                flyFromLowerLeftBig(imageView, textView);
-                flyFromLowerRightBig(imageView, textView);
+                combination2(imageView, textView);
+                //flyFromLowerLeftBig(imageView, textView);
+                //flyFromLowerRightBig(imageView, textView);
                 break;
 
             case 15:
-                flyFromUpperRightSmall(imageView, textView);
-                flyFromUpperLeftSmall(imageView, textView);
+                combination3(imageView, textView);
+                //flyFromUpperRightSmall(imageView, textView);
+                //flyFromUpperLeftSmall(imageView, textView);
                 break;
 
             case 16:
-                flyFromLowerLeftSmall(imageView, textView);
-                flyFromLowerRightSmall(imageView, textView);
+                combination4(imageView, textView);
+                //flyFromLowerLeftSmall(imageView, textView);
+               // flyFromLowerRightSmall(imageView, textView);
                 break;
 
             case 17:
-                flyFromUpperRightBig(imageView, textView);
-                flyFromUpperLeftSmall(imageView,textView);
+                combination5(imageView, textView);
+                //flyFromUpperRightBig(imageView, textView);
+                //flyFromUpperLeftSmall(imageView,textView);
                 break;
 
             case 18:
-                flyFromLowerLeftBig(imageView,textView);
-                flyFromLowerRightSmall(imageView,textView);
+                combination6(imageView, textView);
+                //flyFromLowerLeftBig(imageView,textView);
+                //flyFromLowerRightSmall(imageView,textView);
                 break;
 
             case 19:
-                flyFromLowerLeftBig(imageView, textView);
-                flyRightToLeftStraightSmall(imageView,textView);
+                combination7(imageView, textView);
+                //flyFromLowerLeftBig(imageView, textView);
+                //flyRightToLeftStraightSmall(imageView,textView);
                 break;
 
             case 20:
-                flyFromLowerRightBig(imageView, textView);
-                flyStraightFromLeftSmall(imageView, textView);
+                combination8(imageView, textView);
+                //flyFromLowerRightBig(imageView, textView);
+                //flyStraightFromLeftSmall(imageView, textView);
                 break;
 
             default:
